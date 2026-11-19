@@ -45,13 +45,13 @@ flowchart LR
 
 Registre seu plano aqui antes de editar o código.
 
-- Decisão da camada de apresentação:
-- Decisão da camada de lógica:
-- Decisão da camada de dados:
-- Abordagem para registro de atividades:
-- Abordagem para gerenciamento de equipes:
-- Abordagem para o placar:
-- Abordagem para sugestões de treino:
+- Decisão da camada de apresentação: hook `useJsonResource` em `src/api` e `CapabilityCard` com estados de carregamento, erro, vazio e sucesso.
+- Decisão da camada de lógica: validação de entrada e regras de negócio em `services/octofitService.ts`; erros 4xx com `status` são tratados por `app.ts`.
+- Decisão da camada de dados: `required` nos esquemas Mongoose; o seed não é alterado.
+- Abordagem para registro de atividades: IDs validados por formato (400), existência verificada (404), `points` igual a `minutes` e `occurredAt` na data do registro.
+- Abordagem para gerenciamento de equipes: `name` e `mascot` obrigatórios via validação do Mongoose (400); `members` validados como IDs.
+- Abordagem para o placar: soma de `points` por equipe, ordem decrescente e `rank` a partir de 1.
+- Abordagem para sugestões de treino: foco pela atividade recente (ou pela meta, sem atividade mapeada); 404 para e-mail desconhecido.
 
 ## Plano de testes
 
